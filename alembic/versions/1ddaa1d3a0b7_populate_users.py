@@ -11,20 +11,41 @@ from alembic import op
 import sqlalchemy as sa
 
 # revision identifiers, used by Alembic.
-revision = '1ddaa1d3a0b7'
-down_revision = '43aaac844962'
+revision = "1ddaa1d3a0b7"
+down_revision = "43aaac844962"
 branch_labels = None
 depends_on = None
 
 
 def upgrade() -> None:
     users = [
-        {"id": 1, "email": "admin@beon.tech", "password": "admin123", "first_name": "John", "last_name": "Doe",
-         "created_at": datetime.datetime.now(), "updated_at": datetime.datetime.now()},
-        {"id": 2, "email": "user@beon.tech", "password": "user123", "first_name": "Jane", "last_name": "Doe",
-         "created_at": datetime.datetime.now(), "updated_at": datetime.datetime.now()},
-        {"id": 3, "email": "jack@yahoohoo.com", "password": "jack123", "first_name": "Jack", "last_name": "Sparrow",
-         "created_at": datetime.datetime.now(), "updated_at": datetime.datetime.now()},
+        {
+            "id": 1,
+            "email": "admin@beon.tech",
+            "password": "admin123",
+            "first_name": "John",
+            "last_name": "Doe",
+            "created_at": datetime.datetime.now(),
+            "updated_at": datetime.datetime.now(),
+        },
+        {
+            "id": 2,
+            "email": "user@beon.tech",
+            "password": "user123",
+            "first_name": "Jane",
+            "last_name": "Doe",
+            "created_at": datetime.datetime.now(),
+            "updated_at": datetime.datetime.now(),
+        },
+        {
+            "id": 3,
+            "email": "jack@yahoohoo.com",
+            "password": "jack123",
+            "first_name": "Jack",
+            "last_name": "Sparrow",
+            "created_at": datetime.datetime.now(),
+            "updated_at": datetime.datetime.now(),
+        },
     ]
     op.bulk_insert(
         sa.table(

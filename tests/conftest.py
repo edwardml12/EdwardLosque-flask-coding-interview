@@ -9,7 +9,6 @@ from sqlalchemy.orm import sessionmaker
 from api.db import Base
 
 
-
 @pytest.fixture(scope="session")
 def db():
     # Set up the in-memory SQLite database
