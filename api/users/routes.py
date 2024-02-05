@@ -1,12 +1,11 @@
 from typing import Optional
 
-from pydantic import BaseModel
-
 from flask_openapi3 import APIBlueprint
+from pydantic import BaseModel
 from sqlalchemy import select
 
-from database import db
 from api.users.models import Users
+from database import db
 
 users_app = APIBlueprint("users_app", __name__)
 
@@ -17,9 +16,12 @@ class UserSchema(BaseModel):
     email: str
     created_at: str
     updated_at: str
-    last_login: str
+    last_login: Optional[str]
     first_name: str
     last_name: str
+
+    class Config:
+        orm_mode = True
 
 
 class UserList(BaseModel):
@@ -29,5 +31,10 @@ class UserList(BaseModel):
 @users_app.get("/users", responses={"200": UserList})
 def get_users():
     with db.session() as session:
-        users = session.execute(select(Users)).scalars().all()
-        return users
+        users_query = session.execute(select(Users)).scalars().all()
+        users_list = [
+            UserSchema.from_orm(user).dict()
+            for user
+            in users_query
+        ]
+        return {"users": users_list}
