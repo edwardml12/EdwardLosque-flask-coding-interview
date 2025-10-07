@@ -15,8 +15,16 @@ psycopg2-binary = "^2.9.6"
 flask-sqlalchemy = "^3.0.3"
 flask-openapi3 = "^2.3.2"
 pytest = "^7.3.1"
+uvicorn = {extras = ["standard"], version = "^0.37.0"}
+asgiref = "^3.10.0"
 
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[dependency-groups]
+dev = [
+    "uvicorn[standard] (>=0.37.0,<0.38.0)",
+    "asgiref (>=3.10.0,<4.0.0)"
+]
