@@ -3,6 +3,7 @@ from asgiref.wsgi import WsgiToAsgi
 import uvicorn
 
 from api.users.routes import users_app
+from api.stundent.routes import students_app
 from database import db
 
 

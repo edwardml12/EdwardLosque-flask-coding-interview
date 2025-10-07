@@ -95,3 +95,6 @@ __pycache__/
 env/
 venv/
 ENV/
+
+
+pgdata/
